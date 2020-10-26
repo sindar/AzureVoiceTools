@@ -31,8 +31,8 @@ tr_file = open(tr_file_str,"w")
 for file in os.listdir(src_dir):
      filename = os.fsdecode(file)
      filepath = src_dir_str + "/" + filename
-     print(filepath)
      if filename.endswith(".wav"):
+         print(filepath)
          audio_input = speechsdk.AudioConfig(filename=filepath)
          speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_input)
          result = speech_recognizer.recognize_once()
