@@ -47,3 +47,4 @@ for file in os.listdir(src_dir):
              print("Speech Recognition canceled: {}".format(cancellation_details.reason))
              if cancellation_details.reason == speechsdk.CancellationReason.Error:
                  print("Error details: {}".format(cancellation_details.error_details))
+tr_file.close()
