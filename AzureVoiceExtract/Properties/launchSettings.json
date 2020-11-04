@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AzureVoiceExtract": {
+      "commandName": "Project",
+      "commandLineArgs": "profiles"
+    }
+  }
+}
