@@ -40,3 +40,6 @@ sudo*run*.sh
 
 # dotCover
 *.dotCover
+
+#log
+log.txt
