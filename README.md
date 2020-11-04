@@ -1,1 +1,1 @@
-## A set of command line tools using Azure Voice Cognitive Services <br>
+## A set of command line tools using Azure Cognitive Services Speech<br>
