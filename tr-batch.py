@@ -28,6 +28,8 @@ Path(res_dir_str).mkdir(parents=True, exist_ok=True)
 
 tr_file = open(tr_file_str,"w") 
 
+format = 1
+
 for file in os.listdir(src_dir):
      filename = os.fsdecode(file)
      filepath = src_dir_str + "/" + filename
@@ -38,7 +40,10 @@ for file in os.listdir(src_dir):
          result = speech_recognizer.recognize_once()
          if result.reason == speechsdk.ResultReason.RecognizedSpeech:
              print("Recognized: {}".format(result.text))
-             tr_file.write(filename[:-4] + '\t' + result.text + '\n')
+             if format == 1:
+                tr_file.write(filename[:-4] + '\t' + result.text + '\n')
+             if format == 2:
+                tr_file.write("( " + filename[:-4] + ' "' + result.text + '" )' + '\n')
              copyfile(filepath, res_dir_str + "/" + filename)
          elif result.reason == speechsdk.ResultReason.NoMatch:
              print("No speech could be recognized: {}".format(result.no_match_details))
