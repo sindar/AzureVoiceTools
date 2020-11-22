@@ -7,7 +7,7 @@ service_region = "westus"
 speech_key = None
 
 try:
-    with open('subscription.key') as key_file:
+    with open('subscription-'+ service_region + '.key') as key_file:
             speech_key = key_file.read().rstrip('\n\r')
 except:
     print("Error reading subscription key file!")
