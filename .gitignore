@@ -135,7 +135,7 @@ src_wav/
 res_wav
 
 #subscription key
-subscription.key
+subscription*.key
 
 #transcripts
 transcripts.txt
