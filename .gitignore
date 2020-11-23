@@ -139,6 +139,7 @@ subscription*.key
 
 #transcripts
 transcripts.txt
+txt.done.data
 
 # content below from: https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 # General
