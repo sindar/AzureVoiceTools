@@ -30,7 +30,7 @@ def text_to_speech(sentence, fname):
     subscription_key = read_subscription_key()
     access_token = get_token(subscription_key)
 
-    constructed_url = "https://northeurope.voice.speech.microsoft.com/cognitiveservices/v1?deploymentId=24edc364-4ace-4dbb-9fdd-7934d4ac80dd"
+    constructed_url = "https://northeurope.voice.speech.microsoft.com/cognitiveservices/v1?deploymentId=c418a752-7ca8-4f0d-9d4c-a17d59dd9a98"
     headers = {
         'Authorization': 'Bearer ' + str(access_token),
         'Content-Type': 'application/ssml+xml',
@@ -40,7 +40,7 @@ def text_to_speech(sentence, fname):
 
     body = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" \
         xmlns:mstts=\"http://www.w3.org/2001/mstts\" \
-        xml:lang=\"en-US\"><voice name=\"Bender concat\">"\
+        xml:lang=\"en-US\"><voice name=\"Bender\">"\
         + sentence + "</voice></speak>"   
 
     response = requests.post(constructed_url, headers=headers, data=body)
