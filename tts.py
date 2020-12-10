@@ -55,12 +55,22 @@ def text_to_speech(sentence, fname):
 def main(argv):
     #print ('Argument List:', str(sys.argv))
 
-    with open('txt.done.data','r') as fin:
+    in_file = str(argv[0])
+    type = int(argv[1])
+
+    if type < 1 or type > 2:
+        exit(1)
+
+    with open(in_file,'r') as fin:
         lines = fin.readlines()
     for line in lines:
-        record = line.split('"')
-        fname = record[0].split()[1]
-        sentence = record[1]
+        if type == 1:
+            sentence = line.rstrip('\n\r')
+            fname = sentence
+        elif type == 2:
+            record = line.split('"')
+            fname = record[0].split()[1]
+            sentence = record[1]
         if not os.path.exists('./res_wav/' + fname + '.wav'):
             print ("Writing {}.wav with contents {}".format(fname, sentence))
             text_to_speech(sentence, fname)
