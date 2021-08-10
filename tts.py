@@ -23,14 +23,14 @@ def get_token(subscription_key):
     }
     response = requests.post(fetch_token_url, headers=headers)
     access_token = str(response.text)
-    print(access_token)
+    print("Access token: " + access_token)
     return access_token
 
 def text_to_speech(sentence, fname):
     subscription_key = read_subscription_key()
     access_token = get_token(subscription_key)
 
-    constructed_url = "https://northeurope.voice.speech.microsoft.com/cognitiveservices/v1?deploymentId=98bfa466-eaba-46ef-8c35-1f33a7e777bb"
+    constructed_url = "https://northeurope.voice.speech.microsoft.com/cognitiveservices/v1?deploymentId=c418a752-7ca8-4f0d-9d4c-a17d59dd9a98"
     headers = {
         'Authorization': 'Bearer ' + str(access_token),
         'Content-Type': 'application/ssml+xml',
@@ -53,18 +53,30 @@ def text_to_speech(sentence, fname):
 
 
 def main(argv):
-    #print ('Argument List:', str(sys.argv))
+    # print ('Argument List:', str(sys.argv))
+    
+    if len(sys.argv) < 2:
+        print("Usage: tts.py (-b | -s <sentence>")
+        exit(1)
 
-    with open('txt.done.data','r') as fin:
-        lines = fin.readlines()
-    for line in lines:
-        record = line.split('"')
-        fname = record[0].split()[1]
-        sentence = record[1]
-        if not os.path.exists('./res_wav/' + fname + '.wav'):
-            print ("Writing {}.wav with contents {}".format(fname, sentence))
-            text_to_speech(sentence, fname)
-            time.sleep(2)
+    if sys.argv[1] == "-b":
+        with open('txt.done.data','r') as fin:
+            lines = fin.readlines()
+        for line in lines:
+            record = line.split('"')
+            fname = record[0].split()[1]
+            sentence = record[1]
+            if not os.path.exists('./res_wav/' + fname + '.wav'):
+                print ("Writing {}.wav with contents {}".format(fname, sentence))
+                text_to_speech(sentence, fname)
+                time.sleep(2)
+    elif sys.argv[1] == "-s":
+        try:
+            if not os.path.exists('./res.wav'):
+                print ("Writing {}.wav with contents {}".format('res', sys.argv[2]))
+                text_to_speech(sys.argv[2], './res.wav')
+        except:
+            exit(1)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
